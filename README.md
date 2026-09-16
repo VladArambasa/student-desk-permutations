@@ -246,5 +246,237 @@ This project is distributed under the MIT License.
 
 See `LICENSE` for the full license text.
 
+
+````markdown
+## Installation
+
+### 1. Install Python
+
+Python 3.10 or newer is recommended.
+
+Check your Python version:
+
+```bash
+python3 --version
+````
+
+### 2. Install Tkinter
+
+Tkinter is part of Python's standard library, but on Linux it may need to be installed separately.
+
+On Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install python3-tk
+```
+
+Test that Tkinter is available:
+
+```bash
+python3 -m tkinter
+```
+
+A small Tkinter window should appear.
+
+### 3. Install the Python dependencies
+
+The project includes a `requirements.txt` file.
+
+Install the dependencies with:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+This installs:
+
+* ReportLab — used to generate the printable PDF seating charts.
+
+Tkinter is deliberately **not** included in `requirements.txt` because it is not installed through pip on a normal Python installation.
+
+### 4. Run the application
+
+From the directory containing `main.py`:
+
+```bash
+python3 main.py
+```
+
+On systems where `python` points to Python 3, you can also use:
+
+```bash
+python main.py
+```
+
+## Usage
+
+### Select a class
+
+When the application starts, it automatically scans the `classes` directory.
+
+Select a class from the **Class** dropdown.
+
+For example:
+
+```text
+5
+6
+7
+8
+9
+10
+11
+12
+```
+
+### Select a group
+
+After selecting a class, the **Group** dropdown is populated automatically with the groups that exist inside that class.
+
+For example:
+
+```text
+a
+b
+f
+```
+
+If the directory exists:
+
+```text
+classes/6/f/
+```
+
+the application will look for:
+
+```text
+classes/6/f/Students.txt
+```
+
+### Randomise students
+
+Press:
+
+```text
+Randomise
+```
+
+The application randomly shuffles the students and assigns them to the available `#` desks from `desks.txt`.
+
+The original `Students.txt` file is not modified.
+
+Pressing **Randomise** again creates another random seating arrangement.
+
+### Reload
+
+Press:
+
+```text
+Reload
+```
+
+to rescan the `classes` directory and reload the available classes and groups.
+
+Use this after adding a new class or group while the application is running.
+
+### Edit desks.txt
+
+The **Edit desks.txt** button opens the classroom layout file in the system's default text editor.
+
+After changing the layout, press **Reload**.
+
+### Export PDF
+
+Press:
+
+```text
+Export PDF
+```
+
+to create a printable seating chart.
+
+The generated PDF is:
+
+* A4
+* Landscape
+* Vector-based
+* Suitable for printing
+* Scaled automatically to fit the classroom layout
+* Labeled with the class/group
+* Contains the assigned student names
+* Contains the teacher's desk
+
+For example:
+
+```text
+Class_6F_Seating_2026-09-16.pdf
+```
+
+The PDF is generated directly with ReportLab; **LaTeX and TikZ are not required**.
+
+The application exports the currently displayed seating arrangement. If no seating arrangement has been generated yet, the application will ask you to randomise the students first.
+
+### Example workflow
+
+```text
+1. Start the application
+
+   python3 main.py
+
+2. Select class
+
+   6
+
+3. Select group
+
+   f
+
+4. Check the classroom layout
+
+5. Press:
+
+   Randomise
+
+6. Check the generated seating arrangement
+
+7. Press:
+
+   Export PDF
+
+8. Choose where to save the PDF
+```
+
+## Dependencies
+
+Python standard library:
+
+```text
+tkinter
+pathlib
+random
+os
+subprocess
+```
+
+Third-party Python package:
+
+```text
+reportlab
+```
+
+Install the third-party package with:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+Tkinter is installed separately on Ubuntu/Debian with:
+
+```bash
+sudo apt install python3-tk
+```
+
 ```
 ```
+
